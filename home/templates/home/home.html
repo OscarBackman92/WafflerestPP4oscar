@@ -1,11 +1,9 @@
 {% extends 'base.html' %}
-{% load static %}
 
-{% block title %}Home{% endblock %}
+{% block title %}Home - Waffle{% endblock %}
 
 {% block content %}
-<div class="text-center mt-5">
-    <h1>Welcome to Waffle Restaurant</h1>
-    <p>Your go-to place for delicious waffles and more!</p>
-</div>
+    <h1>Welcome to Waffle</h1>
+    <p>Your favorite online restaurant booking system.</p>
+    <p><a href="{% url 'make_booking' %}" class="btn btn-primary">Book a Table</a></p>
 {% endblock %}
