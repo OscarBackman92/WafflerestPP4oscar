@@ -1,0 +1,29 @@
+{% extends 'base.html' %}
+
+{% load static %}
+
+{% block content %}
+<h1>Menu</h1>
+
+<div class="container">
+    <div class="row">
+        {% for item in menu_items %}
+        <div class="col-md-4">
+            <div class="card mb-4">
+                <div class="card-body">
+                    <h5 class="card-title">{{ item.name }}</h5>
+                    <p class="card-text">{{ item.description }}</p>
+                    <p class="card-text">Price: ${{ item.price }}</p>
+                    <p class="card-text">Category: {{ item.category }}</p>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+
+<!-- Button to book a table -->
+<div class="container mt-4">
+    <a href="{% url 'make_booking' %}" class="btn btn-primary">Book a Table</a>
+</div>
+{% endblock %}
