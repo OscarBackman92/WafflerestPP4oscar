@@ -12,5 +12,5 @@ class TableAdmin(admin.ModelAdmin):
 
 @admin.register(Booking)
 class BookingAdmin(admin.ModelAdmin):
-    list_display = ('user', 'table', 'date', 'time')
+    list_display = ('id','user', 'table', 'date', 'time')
     list_filter = ('date', 'time')

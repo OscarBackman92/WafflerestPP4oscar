@@ -8,21 +8,11 @@
 {% block content %}
 <div class="container">
     <h1 class="text-center mb-4">Book a Table</h1>
-
-    {% if messages %}
-        <ul class="messages list-unstyled">
-            {% for message in messages %}
-                <li{% if message.tags %} class="alert alert-{{ message.tags }}"{% endif %}>{{ message }}</li>
-            {% endfor %}
-        </ul>
-    {% endif %}
-
-    <form method="post" action="{% url 'make_booking' %}"> 
+    <form id="booking-form" method="post" action="{% url 'make_booking' %}"enctype="multipart/form-data"> 
         {% csrf_token %}
         <div class="row justify-content-center">
             <div class="col-md-6">
-                {% crispy form %}
-
+                {{ form|crispy }}
                 {% if form.errors %}  {# Display form errors if any #}
                     <div class="alert alert-danger">
                         <ul class="list-unstyled">
@@ -37,7 +27,6 @@
                         </ul>
                     </div>
                 {% endif %}
-
             </div>
         </div>
         <div class="text-center mt-4">
@@ -46,51 +35,3 @@
     </form>
 </div>
 {% endblock %}
-
-<script>
-    $(document).ready(function() {
-        $('#booking-form').submit(function(event) {
-            event.preventDefault();
-    
-            $.ajax({
-                type: 'POST',
-                url: '{% url 'make_booking' %}',
-                data: $(this).serialize(),
-                success: function(response) {
-                    // Clear previous errors
-                    $('.errorlist').remove(); // Remove any existing error lists
-    
-                    if (response.success) {
-                        alert(response.message);
-                        // You might want to redirect or update the page here
-                    } else {
-                        if (response.errors) {
-                            var error_data = JSON.parse(response.errors);
-                            $.each(error_data, function(field, errors) {
-                                var field_errors = '<ul class="errorlist">';
-                                $.each(errors, function(index, error) {
-                                    field_errors += '<li>' + error + '</li>';
-                                });
-                                field_errors += '</ul>';
-    
-                                // Find the field element and insert errors after it
-                                var fieldElement = $('#id_' + field);
-                                if (fieldElement.length) {  // Check if the field exists
-                                    fieldElement.after(field_errors);
-                                } else if (field === '__all__') {  // Handle non-field errors
-                                    $('#booking-form').prepend(field_errors); 
-                                }
-                            });
-                        } else {
-                            alert("An error occurred. Please try again.");
-                        }
-                    }
-                },
-                error: function(error) {
-                    console.error('Error submitting booking:', error);
-                    alert("An error occurred. Please try again.");
-                }
-            });
-        });
-    });
-    </script>

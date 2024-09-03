@@ -1,6 +1,6 @@
 from django import forms
 from .models import Booking, Table
-from .widgets import TimeSelectWidget  # Import the custom widget
+from .widgets import TimeSelectWidget
 from django.core.exceptions import ValidationError
 from datetime import datetime, timedelta
 
@@ -10,7 +10,7 @@ class BookingForm(forms.ModelForm):
         fields = ['table', 'date', 'time', 'number_of_guests']
         widgets = {
             'date': forms.DateInput(attrs={'type': 'date'}),
-            'time': TimeSelectWidget(),  # Use the custom widget here
+            'time': TimeSelectWidget(),
         }
 
     def clean(self):
