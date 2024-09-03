@@ -50,30 +50,40 @@
 <script>
     $(document).ready(function() {
         $('#booking-form').submit(function(event) {
-            event.preventDefault(); // Prevent default form submission
-    
+            event.preventDefault(); // Prevent the default form submission behavior (page reload)
+            
             $.ajax({
                 type: 'POST',
-                url: '{% url 'make_booking' %}',  // Use the correct URL name
-                data: $(this).serialize(),
+                url: '{% url 'make_booking' %}',  // The URL to handle the booking request
+                data: $(this).serialize(), // Serialize the form data for submission
                 success: function(response) {
-                    // Handle successful booking
+                    // Handle a successful response from the server
                     if (response.success) {
-                        alert(response.message); // Or display a more user-friendly message
-                        // Optionally, redirect to the booking details page or update the page content
+                        alert(response.message); // Display a success message to the user
+                        // You might want to redirect to a confirmation page or update the current page
                     } else {
-                        // Handle errors
+                        // Handle errors returned from the server
                         if (response.errors) {
-                            // Display validation errors on the form
-                            // You'll need to implement this based on your form structure
-                            console.log(response.errors); 
+                            // Display validation errors on the form 
+                            // Assuming your server returns errors in a structured format
+                            var error_data = JSON.parse(response.errors);
+                            $.each(error_data, function(field, errors) {
+                                // Display errors for each field
+                                var field_errors = '<ul class="errorlist">';
+                                $.each(errors, function(index, error) {
+                                    field_errors += '<li>' + error + '</li>';
+                                });
+                                field_errors += '</ul>';
+                                $('#id_' + field).after(field_errors);
+                            });
                         } else {
+                            // Display a generic error message for other unexpected errors
                             alert("An error occurred. Please try again.");
                         }
                     }
                 },
                 error: function(error) {
-                    // Handle AJAX errors
+                    // Handle AJAX request errors (e.g., network issues)
                     console.error('Error submitting booking:', error);
                     alert("An error occurred. Please try again.");
                 }
