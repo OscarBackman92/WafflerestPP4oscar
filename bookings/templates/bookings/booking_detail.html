@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+
+{% load static %}
+
+{% block title %}Booking Details{% endblock %}
+
+{% block content %}
+<div class="container">
+    <h1 class="text-center mb-4">Booking Details</h1>
+
+    <div class="card">
+        <div class="card-body">
+            <h5 class="card-title">Booking #{{ booking.id }}</h5>
+            <p class="card-text">
+                <strong>Table:</strong> {{ booking.table }}<br>
+                <strong>Date:</strong> {{ booking.date }}<br>
+                <strong>Time:</strong> {{ booking.time }}<br>
+                <strong>Number of Guests:</strong> {{ booking.number_of_guests }}
+            </p>
+
+            {# Add options for managing the booking here if needed #}
+            <a href="{% url 'edit_booking' booking.id %}" class="btn btn-primary">Edit Booking</a> 
+            <a href="{% url 'delete_booking' booking.id %}" class="btn btn-danger">Cancel Booking</a> 
+        </div>
+    </div>
+</div>
+{% endblock %}

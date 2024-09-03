@@ -8,11 +8,36 @@
 {% block content %}
 <div class="container">
     <h1 class="text-center mb-4">Book a Table</h1>
-    <form method="post">
+
+    {% if messages %}
+        <ul class="messages list-unstyled">
+            {% for message in messages %}
+                <li{% if message.tags %} class="alert alert-{{ message.tags }}"{% endif %}>{{ message }}</li>
+            {% endfor %}
+        </ul>
+    {% endif %}
+
+    <form method="post" action="{% url 'make_booking' %}"> 
         {% csrf_token %}
         <div class="row justify-content-center">
             <div class="col-md-6">
                 {% crispy form %}
+
+                {% if form.errors %}  {# Display form errors if any #}
+                    <div class="alert alert-danger">
+                        <ul class="list-unstyled">
+                            {% for field in form %}
+                                {% for error in field.errors %}
+                                    <li>{{ error }}</li>
+                                {% endfor %}
+                            {% endfor %}
+                            {% for error in form.non_field_errors %}
+                                <li>{{ error }}</li>
+                            {% endfor %}
+                        </ul>
+                    </div>
+                {% endif %}
+
             </div>
         </div>
         <div class="text-center mt-4">
@@ -21,3 +46,38 @@
     </form>
 </div>
 {% endblock %}
+
+<script>
+    $(document).ready(function() {
+        $('#booking-form').submit(function(event) {
+            event.preventDefault(); // Prevent default form submission
+    
+            $.ajax({
+                type: 'POST',
+                url: '{% url 'make_booking' %}',  // Use the correct URL name
+                data: $(this).serialize(),
+                success: function(response) {
+                    // Handle successful booking
+                    if (response.success) {
+                        alert(response.message); // Or display a more user-friendly message
+                        // Optionally, redirect to the booking details page or update the page content
+                    } else {
+                        // Handle errors
+                        if (response.errors) {
+                            // Display validation errors on the form
+                            // You'll need to implement this based on your form structure
+                            console.log(response.errors); 
+                        } else {
+                            alert("An error occurred. Please try again.");
+                        }
+                    }
+                },
+                error: function(error) {
+                    // Handle AJAX errors
+                    console.error('Error submitting booking:', error);
+                    alert("An error occurred. Please try again.");
+                }
+            });
+        });
+    });
+    </script>

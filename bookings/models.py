@@ -22,8 +22,11 @@ class Table(models.Model):
 class Booking(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     table = models.ForeignKey(Table, on_delete=models.CASCADE)
+
     date = models.DateField()
     time = models.TimeField()
+    number_of_guests = models.PositiveIntegerField(default=1)
+
 
     class Meta:
         unique_together = ('table', 'date', 'time')
