@@ -1,7 +1,8 @@
 from django import forms
+from .models import Booking, Table
+from .widgets import TimeSelectWidget  # Import the custom widget
 from django.core.exceptions import ValidationError
 from datetime import datetime, timedelta
-from .models import Booking, Table
 
 class BookingForm(forms.ModelForm):
     class Meta:
@@ -9,7 +10,7 @@ class BookingForm(forms.ModelForm):
         fields = ['table', 'date', 'time', 'number_of_guests']
         widgets = {
             'date': forms.DateInput(attrs={'type': 'date'}),
-            'time': forms.TimeInput(attrs={'type': 'time'}),
+            'time': TimeSelectWidget(),  # Use the custom widget here
         }
 
     def clean(self):
@@ -61,7 +62,7 @@ class BookingForm(forms.ModelForm):
             time__gte=(datetime.combine(date, time) - BUFFER_TIME).time(),
         )
 
-        # CORRECTED LINE: Combine time with date before subtraction
+        # Combine time with date before subtraction
         booking_end_datetime = datetime.combine(date, booking_end_time)
         bookings_starting_after = Booking.objects.filter(
             table=table,
