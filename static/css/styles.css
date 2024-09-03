@@ -1,9 +1,8 @@
 /* Reset default styles */
-body,
-h1,
-p {
+* {
     margin: 0;
     padding: 0;
+    box-sizing: border-box;
 }
 
 /* Set default font and color */

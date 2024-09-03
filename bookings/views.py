@@ -167,7 +167,7 @@ def booking_detail(request, booking_id):
     booking = get_object_or_404(Booking, id=booking_id)
     return render(request, 'bookings/booking_detail.html', {'booking': booking})
 
-@login_required
+
 def menu(request):
     menu_items = MenuItem.objects.all()
     return render(request, 'bookings/menu.html', {'menu_items': menu_items})
