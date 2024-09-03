@@ -5,6 +5,7 @@ from .forms import BookingForm
 from django.contrib.auth.decorators import login_required
 from django.contrib import messages
 from django.utils.html import escape
+from .utils import send_confirmation_mail
 
 @login_required
 def make_booking(request):
@@ -53,6 +54,19 @@ def make_booking(request):
 
             try:
                 booking.save()
+                
+                # Send confirmation email
+                context = {
+                    'booking': booking,
+                    'user': request.user
+                }
+                send_confirmation_mail(
+                    subject='Booking Confirmation',
+                    recipient_list=[request.user.email],
+                    context=context,
+                    template_name='emails/booking_confirmation.html'
+                )
+                
                 response_data = {'success': True, 'message': 'Booking confirmed!'}
                 if is_ajax:
                     return JsonResponse(response_data)
@@ -78,19 +92,15 @@ def make_booking(request):
 
     return render(request, 'bookings/make_booking.html', {'form': form})
 
-def booking_detail(request, booking_id):
-    booking = get_object_or_404(Booking, id=booking_id)
-    return render(request, 'bookings/booking_detail.html', {'booking': booking})
-
-def menu(request):
-    menu_items = MenuItem.objects.all()
-    return render(request, 'bookings/menu.html', {'menu_items': menu_items})
-
 @login_required
 def booking_detail(request, booking_id):
     booking = get_object_or_404(Booking, id=booking_id)
     return render(request, 'bookings/booking_detail.html', {'booking': booking})
 
+@login_required
+def menu(request):
+    menu_items = MenuItem.objects.all()
+    return render(request, 'bookings/menu.html', {'menu_items': menu_items})
 
 @login_required
 def edit_booking(request, booking_id):
@@ -100,12 +110,25 @@ def edit_booking(request, booking_id):
         form = BookingForm(request.POST, instance=booking)
         if form.is_valid():
             form.save()
+            
+            # Send confirmation email
+            context = {
+                'booking': booking,
+                'user': request.user
+            }
+            send_confirmation_mail(
+                subject='Booking Updated',
+                recipient_list=[request.user.email],
+                context=context,
+                template_name='emails/booking_update.html'
+            )
+
+            messages.success(request, 'Booking updated!')
             return redirect('booking_detail', booking_id=booking.id)
     else:
         form = BookingForm(instance=booking)
     
     return render(request, 'bookings/edit_booking.html', {'form': form, 'booking': booking})
-
 
 @login_required
 def delete_booking(request, booking_id):
@@ -113,7 +136,26 @@ def delete_booking(request, booking_id):
     
     if request.method == 'POST':
         booking.delete()
+
+        # Send confirmation email
+        context = {
+            'booking': booking,
+            'user': request.user
+        }
+        send_confirmation_mail(
+            subject='Booking Cancelled',
+            recipient_list=[request.user.email],
+            context=context,
+            template_name='emails/booking_cancellation.html'
+        )
+
         messages.success(request, 'Booking deleted successfully.')
-        return redirect('booking_list')  # Redirect to a page that lists bookings or another appropriate page
+        return redirect('my_bookings')  # Redirect to a page that lists bookings or another appropriate page
 
     return render(request, 'bookings/delete_booking.html', {'booking': booking})
+
+@login_required
+def my_bookings(request):
+    user = request.user
+    bookings = Booking.objects.filter(user=user).order_by('-date', '-time')
+    return render(request, 'bookings/my_bookings.html', {'bookings': bookings})
