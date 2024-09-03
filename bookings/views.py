@@ -28,7 +28,7 @@ def make_booking(request):
             # Exclude tables that are already booked at that time
             available_tables = [
                 table for table in tables_with_capacity 
-                if not any(booking.table == table for booking in bookings_on_requested_date_time)
+                if not any(existing_booking.table == table for existing_booking in bookings_on_requested_date_time)
             ]
 
             if not available_tables:
@@ -54,12 +54,14 @@ def make_booking(request):
 
             try:
                 booking.save()
-                
-                # Send confirmation email
+
+                # Prepare email context
                 context = {
                     'booking': booking,
                     'user': request.user
                 }
+                
+                # Send confirmation email
                 send_confirmation_mail(
                     subject='Booking Confirmation',
                     recipient_list=[request.user.email],
@@ -91,6 +93,74 @@ def make_booking(request):
         form = BookingForm()
 
     return render(request, 'bookings/make_booking.html', {'form': form})
+
+
+@login_required
+def update_booking(request, booking_id):
+    booking = get_object_or_404(Booking, id=booking_id)
+    
+    if request.method == 'POST':
+        form = BookingForm(request.POST, instance=booking)
+        if form.is_valid():
+            try:
+                form.save()
+                
+                # Prepare email context
+                context = {
+                    'booking': booking,
+                    'user': request.user
+                }
+                
+                # Send confirmation email
+                send_confirmation_mail(
+                    subject='Booking Updated',
+                    recipient_list=[request.user.email],
+                    context=context,
+                    template_name='emails/booking_update.html'
+                )
+
+                messages.success(request, 'Booking updated!')
+                return redirect('booking_detail', booking_id=booking.id)
+            except Exception as e:
+                messages.error(request, f'An error occurred while updating your booking: {e}')
+        else:
+            messages.error(request, 'Please correct the errors below.')
+
+    else:
+        form = BookingForm(instance=booking)
+    
+    return render(request, 'bookings/edit_booking.html', {'form': form, 'booking': booking})
+
+
+@login_required
+def delete_booking(request, booking_id):
+    booking = get_object_or_404(Booking, id=booking_id)
+    
+    if request.method == 'POST':
+        try:
+            booking.delete()
+            
+            # Prepare email context
+            context = {
+                'booking': booking,
+                'user': request.user
+            }
+            
+            # Send confirmation email
+            send_confirmation_mail(
+                subject='Booking Cancelled',
+                recipient_list=[request.user.email],
+                context=context,
+                template_name='emails/booking_cancellation.html'
+            )
+            
+            messages.success(request, 'Booking deleted successfully.')
+            return redirect('my_bookings')
+        except Exception as e:
+            messages.error(request, f'An error occurred while deleting your booking: {e}')
+
+    return render(request, 'bookings/delete_booking.html', {'booking': booking})
+
 
 @login_required
 def booking_detail(request, booking_id):
