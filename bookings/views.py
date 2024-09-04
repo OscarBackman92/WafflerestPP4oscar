@@ -86,49 +86,6 @@ def make_booking(request):
 
 
 @login_required
-def update_booking(request, booking_id):
-    booking = get_object_or_404(Booking, id=booking_id)
-
-    if request.method == 'POST':
-        form = BookingForm(request.POST, instance=booking)
-        if form.is_valid():
-            try:
-                form.save()
-
-                # Prepare email context
-                context = {
-                    'booking': booking,
-                    'user': request.user
-                }
-
-                # Send confirmation email
-                send_confirmation_mail(
-                    subject='Booking Updated',
-                    recipient_list=[request.user.email],
-                    context=context,
-                    template_name='emails/booking_update.html'
-                )
-
-                messages.success(request, 'Booking updated!')
-                return redirect('booking_detail', booking_id=booking.id)
-            except Exception as e:
-                messages.error(
-                    request,
-                    f'An error occurred while updating your booking: {e}')
-        else:
-            messages.error(request, 'Please correct the errors below.')
-
-    else:
-        form = BookingForm(instance=booking)
-
-    return render(
-        request,
-        'bookings/edit_booking.html',
-        {'form': form, 'booking': booking}
-    )
-
-
-@login_required
 def delete_booking(request, booking_id):
     booking = get_object_or_404(Booking, id=booking_id)
 

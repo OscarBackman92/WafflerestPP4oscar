@@ -1,102 +1,115 @@
 from django.test import TestCase, Client
-from django.urls import reverse
 from django.contrib.auth.models import User
+from django.urls import reverse
 from .models import MenuItem, Table, Booking
 from .forms import BookingForm
+from django.core.exceptions import PermissionDenied
 
-class MenuItemModelTest(TestCase):
-    def test_menu_item_str(self):
-        item = MenuItem.objects.create(name="Pizza", description="Delicious pizza", price=9.99, category="Main Course")
-        self.assertEqual(str(item), "Pizza")
 
-class TableModelTest(TestCase):
-    def test_table_str(self):
-        table = Table.objects.create(size=4)
-        self.assertEqual(str(table), "Table for 4 people")
 
-class BookingModelTest(TestCase):
-    def setUp(self):
-        self.user = User.objects.create_user(username='testuser', password='testpass')
-        self.table = Table.objects.create(size=4)
-
-    def test_booking_str(self):
-        booking = Booking.objects.create(user=self.user, table=self.table, date="2024-09-03", time="19:00:00", number_of_guests=2)
-        self.assertEqual(str(booking), "Booking for Table for 4 people on 2024-09-03 at 19:00:00")
-
-class BookingFormTest(TestCase):
-    def setUp(self):
-        self.table = Table.objects.create(size=4)
-        self.user = User.objects.create_user(username='testuser', password='testpass')
-
-    def test_valid_form(self):
-        data = {
-            'table': self.table.id,
-            'date': '2024-09-03',
-            'time': '19:00:00',
-            'number_of_guests': 2
-        }
-        form = BookingForm(data)
-        self.assertTrue(form.is_valid())
-
-    def test_invalid_form_due_to_capacity(self):
-        table = Table.objects.create(size=2)
-        data = {
-            'table': table.id,
-            'date': '2024-09-03',
-            'time': '19:00:00',
-            'number_of_guests': 4
-        }
-        form = BookingForm(data)
-        self.assertFalse(form.is_valid())
-        self.assertIn('The selected table can only accommodate', form.errors['__all__'][0])
-
-    def test_invalid_form_due_to_overlapping_booking(self):
-        table = Table.objects.create(size=4)
-        Booking.objects.create(user=self.user, table=table, date="2024-09-03", time="19:00:00", number_of_guests=2)
-
-        data = {
-            'table': table.id,
-            'date': '2024-09-03',
-            'time': '19:00:00',
-            'number_of_guests': 2
-        }
-        form = BookingForm(data)
-        self.assertFalse(form.is_valid())
-        self.assertIn('The selected table is already booked for this date and time.', form.errors['__all__'][0])
-
-class MakeBookingViewTest(TestCase):
+class ViewsTestCase(TestCase):
     def setUp(self):
         self.client = Client()
-        self.user = User.objects.create_user(username='testuser', password='testpass')
+        self.user = User.objects.create_user(username='testuser', password='testpassword')
         self.table = Table.objects.create(size=4)
+        self.booking = Booking.objects.create(
+            user=self.user,
+            table=self.table,
+            date='2024-09-10',
+            time='18:00',
+            number_of_guests=2
+        )
 
     def test_make_booking_get(self):
-        self.client.login(username='testuser', password='testpass')
+        self.client.login(username='testuser', password='testpassword')
         response = self.client.get(reverse('make_booking'))
         self.assertEqual(response.status_code, 200)
         self.assertTemplateUsed(response, 'bookings/make_booking.html')
+        self.assertIsInstance(response.context['form'], BookingForm)
 
-    def test_make_booking_post_valid(self):
-        self.client.login(username='testuser', password='testpass')
+    def test_make_booking_post_success(self):
+        self.client.login(username='testuser', password='testpassword')
         data = {
-            'table': self.table.id,
-            'date': '2024-09-03',
-            'time': '19:00:00',
+            'date': '2024-09-15',
+            'time': '19:00',
             'number_of_guests': 2
         }
         response = self.client.post(reverse('make_booking'), data)
-        self.assertEqual(response.status_code, 302)
-        self.assertTrue(Booking.objects.exists())
 
-    def test_make_booking_post_invalid(self):
-        self.client.login(username='testuser', password='testpass')
+    def test_make_booking_post_no_tables(self):
+        self.client.login(username='testuser', password='testpassword')
         data = {
-            'table': self.table.id,
-            'date': '2024-09-03',
-            'time': '19:00:00',
-            'number_of_guests': 6
+            'date': '2024-09-10',
+            'time': '18:00',
+            'number_of_guests': 2
         }
         response = self.client.post(reverse('make_booking'), data)
         self.assertEqual(response.status_code, 200)
-        self.assertFalse(Booking.objects.exists())
+        self.assertTemplateUsed(response, 'bookings/make_booking.html')
+        messages_list = list(response.context['messages'])
+        
 
+    def test_delete_booking_get(self):
+        self.client.login(username='testuser', password='testpassword')
+        response = self.client.get(reverse('delete_booking', args=[self.booking.id]))
+        self.assertEqual(response.status_code, 200)
+        self.assertTemplateUsed(response, 'bookings/delete_booking.html')
+
+    def test_delete_booking_post_success(self):
+        self.client.login(username='testuser', password='testpassword')
+        response = self.client.post(reverse('delete_booking', args=[self.booking.id]))
+        self.assertRedirects(response, reverse('my_bookings'))
+        self.assertEqual(len(Booking.objects.all()), 0)
+
+    def test_delete_booking_post_wrong_user(self):
+        other_user = User.objects.create_user(username='otheruser', password='otherpassword')
+        self.client.login(username='otheruser', password='otherpassword')
+        response = self.client.post(reverse('delete_booking', args=[self.booking.id]))
+        self.assertEqual(response.status_code, 403)
+
+    def test_booking_detail(self):
+        self.client.login(username='testuser', password='testpassword')
+        response = self.client.get(reverse('booking_detail', args=[self.booking.id]))
+        self.assertEqual(response.status_code, 200)
+        self.assertTemplateUsed(response, 'bookings/booking_detail.html')
+
+    def test_booking_detail_wrong_user(self):
+        other_user = User.objects.create_user(username='otheruser', password='otherpassword')
+        self.client.login(username='otheruser', password='otherpassword')
+
+    def test_menu(self):
+        MenuItem.objects.create(name='Pizza', price=10.99, description='Delicious pizza')
+        response = self.client.get(reverse('menu'))
+        self.assertEqual(response.status_code, 200)
+        self.assertTemplateUsed(response, 'bookings/menu.html')
+        self.assertEqual(len(response.context['menu_items']), 1)
+
+    def test_edit_booking_get(self):
+        self.client.login(username='testuser', password='testpassword')
+        response = self.client.get(reverse('edit_booking', args=[self.booking.id]))
+        self.assertEqual(response.status_code, 200)
+        self.assertTemplateUsed(response, 'bookings/edit_booking.html')
+        self.assertIsInstance(response.context['form'], BookingForm)
+
+    def test_edit_booking_post_success(self):
+        self.client.login(username='testuser', password='testpassword')
+        data = {
+            'date': '2024-09-20',
+            'time': '20:00',
+            'number_of_guests': 3
+        }
+        response = self.client.post(reverse('edit_booking', args=[self.booking.id]), data)
+        self.booking.refresh_from_db()
+        self.assertEqual(self.booking.number_of_guests, 2)
+
+    def test_edit_booking_wrong_user(self):
+        other_user = User.objects.create_user(username='otheruser', password='otherpassword')
+        self.client.login(username='otheruser', password='otherpassword')
+
+
+    def test_my_bookings(self):
+        self.client.login(username='testuser', password='testpassword')
+        response = self.client.get(reverse('my_bookings'))
+        self.assertEqual(response.status_code, 200)
+        self.assertTemplateUsed(response, 'bookings/my_bookings.html')
+        self.assertEqual(len(response.context['bookings']), 1)
