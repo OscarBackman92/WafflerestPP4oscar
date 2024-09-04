@@ -1,15 +1,8 @@
-from django.test import TestCase, Client, override_settings
+from django.test import TestCase, Client
 from django.urls import reverse
-from unittest.mock import patch
 from django.contrib.auth.models import User
-from django.core.exceptions import ValidationError
-from django.core.mail import send_mail
 from .models import MenuItem, Table, Booking
 from .forms import BookingForm
-from .utils import send_confirmation_mail
-from datetime import datetime, time
-import os
-from django.conf import settings
 
 class MenuItemModelTest(TestCase):
     def test_menu_item_str(self):

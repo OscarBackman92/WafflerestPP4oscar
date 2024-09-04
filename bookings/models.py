@@ -33,3 +33,4 @@ class Booking(models.Model):
 
     def __str__(self):
         return f"Booking for {self.table} on {self.date} at {self.time}"
+
