@@ -7,7 +7,6 @@ from .utils import send_confirmation_mail
 from django.core.exceptions import PermissionDenied
 
 
-
 @login_required
 def make_booking(request):
     if request.method == 'POST':
