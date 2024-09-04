@@ -5,42 +5,101 @@
     box-sizing: border-box;
 }
 
-/* Set default font and color */
+/* Body styles */
 body {
     font-family: Arial, sans-serif;
-    color: #333;
+    background-color: #f4f4f4;
+    background: url('../images/cld-sample-4.png') no-repeat center center fixed;
+    background-size: cover;
+    min-height: 100vh; /* Ensure body takes full height of viewport */
+    display: flex;
+    flex-direction: column;
 }
 
-/* Add some spacing */
-h1,
-h2,
-h3,
-p {
+/* Header styles */
+header {
+    background-color: #333;
+    padding: 20px;
+    color: #fff;
+    text-align: center;
+}
+
+header h1 {
+    font-size: 24px;
     margin-bottom: 10px;
 }
 
-/* Add a simple border */
-.container {
-    border: 1px solid #ccc;
-    padding: 10px;
+/* Navigation styles */
+nav {
+    margin-top: 20px;
+    text-align: center;
 }
 
-/* Add some basic styling to links */
-a {
-    color: #007bff;
+nav ul {
+    list-style-type: none;
+}
+
+nav ul li {
+    display: inline-block;
+    margin-right: 10px;
+}
+
+nav ul li a {
+    color: #333;
     text-decoration: none;
+    padding: 5px 10px;
+    transition: background-color 0.3s ease;
 }
 
-a:hover {
-    text-decoration: underline;
+nav ul li a:hover {
+    background-color: #333;
+    color: #fff;
 }
 
-footer {
-    position: fixed;
-    left: 0;
-    bottom: 0;
-    width: 100%;
-    background-color: red;
+/* Hero image section */
+.hero-image {
+    background-image: url('../images/hero.jpg');
+    background-size: cover;
+    background-position: center;
+    padding: 100px 0;
     color: white;
     text-align: center;
-  }
+    border: 5px solid #fff; /* White border around the hero image */
+    border-radius: 15px; /* Rounded corners */
+    margin: 0 auto; /* Center the hero image container */
+}
+
+/* Main content styles */
+main {
+    flex: 1; /* Allows main content to grow and push footer down */
+    padding: 20px;
+}
+
+/* Footer styles */
+footer {
+    background-color: #333;
+    color: #fff;
+    padding: 20px;
+    text-align: center;
+    position: relative;
+    bottom: 0;
+    width: 100%;
+}
+
+/* Additional utility styles */
+.text-center {
+    text-align: center;
+}
+
+.bookings-table {
+    width: 100%;
+    overflow-x: auto;
+}
+
+.bookings-table td:last-child {
+    white-space: nowrap;
+}
+
+.bookings-table .btn {
+    margin-right: 5px;
+}

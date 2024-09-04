@@ -4,28 +4,82 @@
 {% block title %}Home - Waffle{% endblock %}
 
 {% block content %}
-<div class="container text-center">
-    <h1>Welcome to Waffle</h1>
-    <p>Your favorite online restaurant booking system.</p>
-    <div>
-    </div>   
+<!-- Hero Image Section -->
+<div class="hero-image" style="background-image: url('{% static 'images/waffle_hero.jpg' %}'); background-size: cover; background-position: center; padding: 100px 0;">
+    <div class="container text-center text-white">
+        <h1 class="display-4">Welcome to Waffle</h1>
+        <p class="lead">Your favorite online restaurant booking system.</p>
+    </div>
+</div>
 
-    <div class="d-flex justify-content-center mb-4">
-        <div class="card" style="max-width: 540px;">
-            <div class="card-body">
-                <h5 class="card-title">Discover Our Menu</h5>
-                <p class="card-text">Explore our diverse selection of delicious dishes, made with the freshest ingredients.</p>
-                <a href="{% url 'menu' %}" class="btn btn-primary">View Menu</a>
+<div class="container my-5 text-center">
+    <!-- Featured Sections: Menu and Booking -->
+    <div class="row row-cols-1 row-cols-md-2 g-4 mt-4">
+        <div class="col">
+            <div class="card h-100 shadow-sm">
+                <div class="card-body text-center">
+                    <h5 class="card-title">Discover Our Menu</h5>
+                    <p class="card-text">Explore our diverse selection of delicious dishes, made with the freshest ingredients.</p>
+                    <a href="{% url 'menu' %}" class="btn btn-primary">View Menu</a>
+                </div>
+            </div>
+        </div>
+        <div class="col">
+            <div class="card h-100 shadow-sm">
+                <div class="card-body text-center">
+                    <h5 class="card-title">Book a Table</h5>
+                    <p class="card-text">Secure your spot at Waffle by booking a table in advance.</p>
+                    <a href="{% url 'make_booking' %}" class="btn btn-primary">Book Now</a>
+                </div>
+            </div>
+        </div>
+    </div>    
+
+    <!-- About Us Section -->
+    <div class="row mt-5">
+        <div class="col">
+            <div class="card shadow-sm">
+                <div class="card-body text-center">
+                    <h5 class="card-title">About Us</h5>
+                    <p class="card-text">
+                        At Waffle, we believe that dining is more than just a meal—it's an experience. Our mission is to bring people together through delicious food and exceptional service. With a wide variety of dishes crafted from the finest ingredients, we aim to delight your taste buds and provide a memorable dining experience. Whether you're looking to enjoy a cozy meal with loved ones or celebrate a special occasion, Waffle is the perfect place to be. Join us and discover why Waffle is more than just a restaurant—it's a destination.
+                    </p>
+                </div>
             </div>
         </div>
     </div>
 
-    <div class="d-flex justify-content-center">
-        <div class="card" style="max-width: 540px;">
-            <div class="card-body">
-                <h5 class="card-title">Book a Table</h5>
-                <p class="card-text">Secure your spot at Waffle by booking a table in advance.</p>
-                <a href="{% url 'make_booking' %}" class="btn btn-primary">Book Now</a>
+    <!-- How It Works Section -->
+    <div class="row mt-5">
+        <div class="col">
+            <div class="card shadow-sm">
+                <div class="card-body text-center">
+                    <h5 class="card-title">How It Works</h5>
+                    <p class="card-text">
+                        Booking a table at Waffle is quick and easy. Simply browse our menu, choose your preferred date and time, and make a reservation. We'll take care of the rest to ensure you have a fantastic dining experience. If you have any special requests, don't hesitate to let us know when booking.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Newsletter Signup Section -->
+    <div class="row mt-5">
+        <div class="col">
+            <div class="card shadow-sm">
+                <div class="card-body text-center">
+                    <h5 class="card-title">Stay in the Loop</h5>
+                    <p class="card-text">
+                        Sign up for our newsletter to receive the latest news, special offers, and updates from Waffle. Be the first to know about our new dishes and events!
+                    </p>
+                    <form class="text-center">
+                        <div class="mb-3">
+                            <label for="email" class="form-label">Email address</label>
+                            <input type="email" class="form-control" id="email" placeholder="name@example.com">
+                        </div>
+                        <button type="submit" class="btn btn-primary">Subscribe</button>
+                    </form>
+                </div>
             </div>
         </div>
     </div>
