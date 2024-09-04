@@ -1,14 +1,24 @@
 {% extends 'base.html' %}
 
 {% block content %}
-<div class="container">
-    <h1 class="text-center">Delete Booking</h1>
-    <p>Are you sure you want to delete the booking for {{ booking.date }} at {{ booking.time }}?</p>
-    
-    <form method="post">
-        {% csrf_token %}
-        <button type="submit" class="btn btn-danger">Delete</button>
-        <a href="{% url 'booking_detail' booking_id=booking.id %}" class="btn btn-secondary">Cancel</a>
-    </form>
+<div class="container my-5"> 
+    <div class="row justify-content-center">
+        <div class="col-md-6"> 
+            <div class="card"> 
+                <div class="card-body">
+                    <h1 class="text-center mb-4">Delete Booking</h1>
+                    <p class="text-center">Are you sure you want to delete the booking for {{ booking.date }} at {{ booking.time }}?</p>
+
+                    <form method="post">
+                        {% csrf_token %}
+                        <div class="d-flex justify-content-center gap-3"> 
+                            <button type="submit" class="btn btn-danger">Delete</button>
+                            <a href="{% url 'booking_detail' booking_id=booking.id %}" class="btn btn-secondary">Cancel</a>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
 </div>
 {% endblock %}

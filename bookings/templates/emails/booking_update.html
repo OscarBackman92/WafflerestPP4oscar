@@ -2,15 +2,45 @@
 <html>
 <head>
     <title>Booking Update</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif; /* Choose a fun, brand-appropriate font if available */
+            text-align: center;
+            background-color: #f4f4f4;
+            padding: 20px;
+        }
+
+        h1 {
+            color: #333; /* Darker color for contrast */
+        }
+
+        .update-message {
+            background-color: #fff;
+            border-radius: 10px;
+            padding: 30px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            margin: 20px auto;
+            max-width: 500px;
+        }
+
+        .emoji {
+            font-size: 3em; /* Adjust emoji size as needed */
+        }
+    </style>
 </head>
 <body>
-    <h1>Booking Updated</h1>
-    <p>Dear {{ user.username }},</p>
-    <p>Your booking has been updated!</p>
-    <p><strong>Date:</strong> {{ booking.date }}</p>
-    <p><strong>Time:</strong> {{ booking.time }}</p>
-    <p><strong>Table:</strong> {{ booking.table.name }}</p>
-    <p><strong>Number of Guests:</strong> {{ booking.number_of_guests }}</p>
-    <p>Thank you for updating your booking with us!</p>
+    <div class="update-message">
+        <h1>Booking Updated! <span class="emoji">✅</span></h1> 
+        <p>Hi {{ user.username }},</p>
+        <p>We've got your booking changes all set! </p>
+        <p><strong>Updated Details:</strong></p>
+        <ul>
+            <li><strong>Date:</strong> {{ booking.date }}</li>
+            <li><strong>Time:</strong> {{ booking.time }}</li>
+            <li><strong>Table:</strong> {{ booking.table.name }}</li>
+            <li><strong>Guests:</strong> {{ booking.number_of_guests }}</li>
+        </ul>
+        <p>Looking forward to having you!</p>
+    </div>
 </body>
 </html>

@@ -2,15 +2,45 @@
 <html>
 <head>
     <title>Booking Cancellation</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif; /* Choose a fun font if you like */
+            text-align: center;
+            background-color: #f4f4f4;
+            padding: 20px;
+        }
+
+        h1 {
+            color: #333; /* Darker color for contrast */
+        }
+
+        .cancelled-message {
+            background-color: #fff;
+            border-radius: 10px;
+            padding: 30px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            margin: 20px auto;
+            max-width: 500px;
+        }
+
+        .emoji {
+            font-size: 3em; /* Adjust emoji size as needed */
+        }
+    </style>
 </head>
 <body>
-    <h1>Booking Cancelled</h1>
-    <p>Dear {{ user.username }},</p>
-    <p>Your booking has been cancelled.</p>
-    <p><strong>Date:</strong> {{ booking.date }}</p>
-    <p><strong>Time:</strong> {{ booking.time }}</p>
-    <p><strong>Table:</strong> {{ booking.table.name }}</p>
-    <p><strong>Number of Guests:</strong> {{ booking.number_of_guests }}</p>
-    <p>We're sorry to see you go. If you have any questions, feel free to contact us.</p>
+    <div class="cancelled-message">
+        <h1>Booking Cancelled <span class="emoji">😔</span></h1> 
+        <p>Hey there, {{ user.username }},</p>
+        <p>We've waved goodbye to your booking. No worries, though! </p>
+        <p><strong>Details:</strong></p>
+        <ul>
+            <li><strong>Date:</strong> {{ booking.date }}</li>
+            <li><strong>Time:</strong> {{ booking.time }}</li>
+            <li><strong>Table:</strong> {{ booking.table.name }}</li>
+            <li><strong>Guests:</strong> {{ booking.number_of_guests }}</li>
+        </ul>
+        <p>If you have any questions or want to reschedule, just give us a shout!</p>
+    </div>
 </body>
 </html>

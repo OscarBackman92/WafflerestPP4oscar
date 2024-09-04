@@ -3,16 +3,16 @@
 {% load static %}
 
 {% block content %}
-<div class="container text-center">
-    <h1 class="mb-4">Menu</h1>
+<div class="container text-center my-5"> 
+    <h1 class="mb-4 card">Menu</h1>
 
-    <div class="row justify-content-center">
+    <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4"> 
         {% for item in menu_items %}
-        <div class="col-md-4">
-            <div class="card mb-4">
-                <div class="card-body text-center">
+        <div class="col">
+            <div class="card h-100"> 
+                <div class="card-body d-flex flex-column"> 
                     <h5 class="card-title">{{ item.name }}</h5>
-                    <p class="card-text">{{ item.description }}</p>
+                    <p class="card-text flex-grow-1">{{ item.description }}</p> 
                     <p class="card-text">Price: ${{ item.price }}</p>
                     <p class="card-text">Category: {{ item.category }}</p>
                 </div>
@@ -21,7 +21,6 @@
         {% endfor %}
     </div>
 
-    <!-- Button to book a table -->
     <div class="mt-4">
         <a href="{% url 'make_booking' %}" class="btn btn-primary">Book a Table</a>
     </div>
