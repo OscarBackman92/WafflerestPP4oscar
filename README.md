@@ -15,7 +15,7 @@ This is a fictional waffle restaurant based in sweden and serving the best waffl
 - [User Experience Design](#user-experience-design)
   - [The Strategy Plane](#the-strategy-plane)
     - [Site Goals](#site-goals)
-    - [User Stories](#user-stories) 
+    - [User Stories](#user-stories)
     - [Agile Planning (Optional)](#agile-planning-optional)
   - [The Scope Plane](#the-scope-plane)
   - [The Structure Plane](#the-structure-plane)
@@ -39,91 +39,131 @@ This is a fictional waffle restaurant based in sweden and serving the best waffl
   - [Forking the Project](#forking-the-project)
 - [Credits](#credits)
 
-
-# User Experience Design 
+## User Experience Design
 
 ## The Strategy Plane
 
 ### Site Goals
 
-* [Clearly list the primary goals your project aims to achieve. What problems does it solve? What value does it provide to users?]
+- [Clearly list the primary goals your project aims to achieve. What problems does it solve? What value does it provide to users?]
 
 ### User Stories
 
-* [List out the key user stories that drove the development of your project. Focus on the "who", "what", and "why" of each story.] 
+- [List out the key user stories that drove the development of your project. Focus on the "who", "what", and "why" of each story.]
 
 ### Agile Planning (Optional)
 
-* [If you used Agile methodologies, briefly describe your process, sprints, epics, etc.]
+- [If you used Agile methodologies, briefly describe your process, sprints, epics, etc.]
 
 ## The Scope Plane
 
-* [List the core features and functionalities included in your project.]
+- [List the core features and functionalities included in your project.]
 
 ## The Structure Plane
 
 ### Features
 
-* [For each major feature, provide a detailed explanation of its implementation, including relevant code snippets or screenshots. You can follow the "User Story - Implementation" format from the example.]
+- [For each major feature, provide a detailed explanation of its implementation, including relevant code snippets or screenshots. You can follow the "User Story - Implementation" format from the example.]
 
 ### Features Left to Implement (Optional)
 
-* [If applicable, list features you'd like to add in the future]
+- [If applicable, list features you'd like to add in the future]
 
 ## The Skeleton Plane
 
 ### Wireframes
 
-* ![Homepage](docs/readme_images/wireframe_home.png)
+- ![Homepage](docs/readme_images/wireframe_home.png)
 
-* ![Menu](docs/readme_images/wireframe_menu.png)
+- ![Menu](docs/readme_images/wireframe_menu.png)
 
-* ![Book_a_table](docs/readme_images/wireframe_booking.png)
+- ![Book_a_table](docs/readme_images/wireframe_booking.png)
 
-* ![my_bookings](docs/readme_images/wireframe_my_bookings.png)
+- ![my_bookings](docs/readme_images/wireframe_my_bookings.png)
 
 ### Database Design
 
-* ![Flowcharts](docs/readme_images/flowchart_booking_detail.png)
+- ![Flowcharts](docs/readme_images/flowchart_booking_detail.png)
 
-* ![Flowchart](docs/readme_images/flowchart_make_booking_and_delete_booking.png)
+- ![Flowchart](docs/readme_images/flowchart_make_booking_and_delete_booking.png)
 
-* ![FlowChart](docs/readme_images/flowchart_menu_and_my_bookings.png)
-* ![ERD](docs/readme_images/waffle_model_ERD.png)
+- ![FlowChart](docs/readme_images/flowchart_menu_and_my_bookings.png)
+
+- ![ERD](docs/readme_images/waffle_model_ERD.png)
 
 ### Security
 
-* [Explain the security measures you've implemented to protect user data and prevent unauthorized access.]
+- [Explain the security measures you've implemented to protect user data and prevent unauthorized access.]
 
 ## The Surface Plane
 
 ### Design
 
-* [Provide a brief overview of your design approach and philosophy.]
+- [Provide a brief overview of your design approach and philosophy.]
 
 ### Color Scheme
 
-* [List the primary colors used and their hex codes.]
+- [List the primary colors used and their hex codes.]
 
 ### Typography
 
-* [Specify the fonts used for headings, body text, etc.]
+- HTML
+  - The structure of the Website was developed using HTML as the main language.
+- CSS
+  - The Website was styled using custom CSS in an external file.
+- Python
+  - Python was the main programming language used for the application using the Django Framework.
+- Visual Studio Code
+  - The website was developed using Visual Studio Code IDE
+- GitHub
+  - Source code is hosted on GitHub
+- Git
+  - Used to commit and push code during the development of the Website
+- Font Awesome
+  - This was used for various icons throughout the site
+- Favicon.io
+  - favicon files were created at https://favicon.io/favicon-converter/
+- balsamiq
+  - wireframes were created using balsamiq from https://balsamiq.com/wireframes/desktop/#
+
+**Python Modules Used**
+
+- Django Class based views (ListView, UpdateView, DeleteView, CreateView) - Used for the classes to create, read, update and delete
+- Mixins (LoginRequiredMixin, UserPassesTestMixin) - Used to enforce login required on views and test user is authorized to perform actions
+- messages - Used to pass messages to the toasts to display feedback to the user upon actions
+- timedelta, date - Date was used in order to search for objects by date and timedelta for searching date ranges
+
+**External Python Modules**
+
+- asgiref==3.8.1 - ASGI server reference, used by Django for async capabilities
+- crispy-bootstrap5==2024.2 - Allows Bootstrap 5 usage with crispy forms
+- dj-database-url==2.2.0 - Parses database URL for the production environment
+- Django==5.1 - Framework used to build the application
+- django-allauth==64.2.0 - Authentication system for sign-up, sign-in, logout, password resets, etc.
+- django-crispy-forms==2.3 - Styles forms upon rendering
+- django-extensions==3.2.3 - Collection of custom extensions for Django
+- gunicorn==23.0.0 - WSGI HTTP server for UNIX used to serve the Django application
+- packaging==24.1 - Version and dependency management
+- psycopg2==2.9.9 - PostgreSQL adapter used for Heroku deployment
+- sqlparse==0.5.1 - SQL query parsing tool used in Django
+- typing_extensions==4.12.2 - Provides backported typing features
+- tzdata==2024.1 - Time zone database used with Django
+- whitenoise==6.7.0 - Serves static files without a cloud provider (e.g., Cloudinary)
 
 ### Imagery
 
-* [Describe any images or graphics used and their sources (if applicable).]
+- [Describe any images or graphics used and their sources (if applicable).]
 
-# Technologies
+## Technologies
 
-* [List all the technologies, languages, frameworks, and libraries used in your project.]
-* [You can include Python modules and external libraries as in the example.]
+- [List all the technologies, languages, frameworks, and libraries used in your project.]
+- [You can include Python modules and external libraries as in the example.]
 
-# Testing
+## Testing
 
-* [Detail your testing process, including types of tests conducted, tools used, and any notable findings or challenges.]
-* [Consider linking to a separate TESTING.md file if your testing documentation is extensive] 
+Test cases and results can be found in the [TESTING.md](TESTING.md) file. This was moved due to the size of the file.
 
-# Deployment
+## Deployment
 
 ### Version Control
 
@@ -136,7 +176,6 @@ The following git commands were used throughout development to push code to the 
 ```git commit -m “commit message”``` - This command was used to commit changes to the local repository queue ready for the final step.
 
 ```git push``` - This command was used to push all committed code to the remote repository on github.
-
 
 ### Deployment Instructions
 
@@ -165,13 +204,31 @@ The site was deployed to Heroku. The steps to deploy are as follows:
 
 ### Run Locally
 
-* [Explain how to set up and run your project on a local development environment.]
+Navigate to the GitHub Repository you want to clone to use locally:
+
+- Click on the code drop down button
+- Click on HTTPS
+- Copy the repository link to the clipboard
+- Open your IDE of choice (git must be installed for the next steps)
+- Type git clone copied-git-url into the IDE terminal
+
+The project will now have been cloned on your local machine for use.
 
 ### Forking the Project
 
-* [Give instructions on how others can fork your project on GitHub.]
+Most commonly, forks are used to either propose changes to someone else's project or to use someone else's project as a starting point for your own idea.
 
-# Credits
+- Navigate to the GitHub Repository you want to fork.
 
-* [Acknowledge any external resources, libraries, tutorials, or individuals that contributed to your project.] 
-* [Be sure to include image attributions if you used any.]
+- On the top right of the page under the header, click the fork button.
+
+- This will create a duplicate of the full project in your GitHub Repository.
+
+## Credits
+
+- Daisy McGirr for being my mentor
+- Gareth McGirr SizzleAndSteak project inspiration and readme inspiration
+- Jonathan Zakrisson for debugging and tips
+- Google why not?
+- Josefine Bäckman my wife
+- Family for testing and input

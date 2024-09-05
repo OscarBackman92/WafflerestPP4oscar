@@ -77,13 +77,31 @@ All pages were run through the Code institute's [Pep8](https://pep8ci.herokuapp.
 
 The django auto generated code for AUTH_PASSWORD_VALIDATORS were showing up as lines too long. I could not find a way to split these lines but since they were auto generated and not my own custom code, I hope this is acceptable.
 
-![PEP8](docs/testing/pep8.PNG)
+![PEP8](docs/readme_images/bookin_urls_validation.png)
+
+![PEP8](docs/readme_images/booking_admin_validation.png)
+
+![PEP8](docs/readme_images/booking_forms_validation.png)
+
+![PEP8](docs/readme_images/booking_models_validation.png)
+
+![PEP8](docs/readme_images/booking_tests_validation.png)
+
+![PEP8](docs/readme_images/booking_utils_validation.png)
+
+![PEP8](docs/readme_images/booking_view_validation.png)
+
+![PEP8](docs/readme_images/booking_widget_validation.png)
+
+![PEP8](docs/readme_images/home_urls_validation.png)
+
+![PEP8](/docs/readme_images/home_view_validation.png)
 
 ## Lighthouse Report
 
-Lighthouse report showed areas for improvement on SEO and Best practices. Meta descriptions and keywords were added to boost the SEO to 100 but the best practice warnings were coming from the use of an embedded iframe's javascript. Unfortunately I did not find a way to improve this as I am not initialising the google map iframe with javascript.
+Lighthouse report showed areas for improvement on SEO. Could add more meta tags for this.
 
-![Lighthouse v1]()
+![Lighthouse v1](/docs/readme_images/lighthouse.png)
 
 ## Responsiveness
 
@@ -93,9 +111,9 @@ Steps to test:
 
 - Open browser and navigate to [Waffle](https://oscarwaffle-be7490c12beb.herokuapp.com/)
 - Open the developer tools (right click and inspect)
-- Set to responsive and decrease width to 320px
+- Set to responsive and decrease width to 360px
 - Set the zoom to 50%
--  Click and drag the responsive window to maximum width
+- Click and drag the responsive window to maximum width
 
 Expected:
 
