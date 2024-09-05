@@ -9,7 +9,7 @@
 body {
     font-family: Arial, sans-serif;
     background-color: #f4f4f4;
-    background: url('../images/cld-sample-4.png') no-repeat center center fixed;
+    background: url("../images/cld-sample-4.1c94d6b0b0f3.png") no-repeat center center fixed;
     background-size: cover;
     min-height: 100vh; /* Ensure body takes full height of viewport */
     display: flex;
@@ -68,6 +68,12 @@ nav ul li a:hover {
 }
 
 
+.navbar-text {
+    padding-left: 15px;
+    padding-right: 15px;
+    line-height: 1.5;
+    display: inline-block;
+}
 
 /* Hero image section */
 .hero-image {

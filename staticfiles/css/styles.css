@@ -67,6 +67,14 @@ nav ul li a:hover {
     color: #fff;
 }
 
+
+.navbar-text {
+    padding-left: 15px;
+    padding-right: 15px;
+    line-height: 1.5;
+    display: inline-block;
+}
+
 /* Hero image section */
 .hero-image {
     color: white;
