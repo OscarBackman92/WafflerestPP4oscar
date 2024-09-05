@@ -206,6 +206,9 @@ table {
     letter-spacing: .1em;
     text-transform: uppercase;
   }
+
+
+
   
   @media screen and (max-width: 600px) {
     table {
