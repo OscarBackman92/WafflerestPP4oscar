@@ -63,7 +63,7 @@ nav ul li a {
 }
 
 nav ul li a:hover {
-    background-color: #333;
+    background-color: #09f7bb;
     color: #fff;
 }
 
@@ -77,6 +77,10 @@ nav ul li a:hover {
     border-radius: 15px; /* Rounded corners */
     margin: 0 auto; /* Center the hero image container */
     font-family: 'Poppins', sans-serif;
+}
+
+.hero-text {
+    background-color: rgba(0, 0, 0, 0.4);
 }
 
 /* Main content styles */
