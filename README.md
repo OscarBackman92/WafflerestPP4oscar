@@ -133,7 +133,7 @@ This is a fictional waffle restaurant based in sweden and serving the best waffl
 - messages - Used to pass messages to the toasts to display feedback to the user upon actions
 - timedelta, date - Date was used in order to search for objects by date and timedelta for searching date ranges
 
-**External Python Modules**
+## External Python Modules
 
 - asgiref==3.8.1 - ASGI server reference, used by Django for async capabilities
 - crispy-bootstrap5==2024.2 - Allows Bootstrap 5 usage with crispy forms

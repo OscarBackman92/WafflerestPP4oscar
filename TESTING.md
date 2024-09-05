@@ -17,7 +17,7 @@ Testing was performed to ensure all navigation links on the respective pages, na
 
 - See markdown testing above for navigation links and how they work
 
-All navigation links directed to the corect pages as expected.
+All navigation links directed to the correct pages as expected.
 
 ## Footer
 
