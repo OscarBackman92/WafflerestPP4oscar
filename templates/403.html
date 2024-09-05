@@ -2,8 +2,13 @@
 {% load static %}
 
 {% block title %}Forbidden{% endblock %}
+
 {% block content %}
-    <h1>403 Forbidden</h1>
-    <p>Sorry, you don't have permission to access this page.</p>
-    <a href="{% url 'home' %}">Return to Home</a>
+<main class="container mt-4">
+    <div class="card text-center p-4">
+        <h1 class="display-4">403 - Forbidden</h1>
+        <p class="lead">Sorry, you don't have permission to access this page.</p>
+        <a href="{% url 'home' %}" class="btn btn-primary mt-3">Return to Home</a>
+    </div>
+</main>
 {% endblock %}

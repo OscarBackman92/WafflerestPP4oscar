@@ -4,9 +4,11 @@
 {% block title %}Server Error{% endblock %}
 
 {% block content %}
-<div class="text-center card">
-    <h1>500 - Internal Server Error</h1>
-    <p>Sorry, something went wrong on our end. Please try again later.</p>
-    <a href="{% url 'home' %}">Return to Home</a>
-</div>
+<main class="container mt-4">
+    <div class="card text-center p-4">
+        <h1 class="display-4">500 - Internal Server Error</h1>
+        <p class="lead">Sorry, something went wrong on our end. Please try again later.</p>
+        <a href="{% url 'home' %}" class="btn btn-primary mt-3">Return to Home</a>
+    </div>
+</main>
 {% endblock %}
