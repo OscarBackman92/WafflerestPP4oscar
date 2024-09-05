@@ -21,6 +21,7 @@ class BookingForm(forms.ModelForm):
         guests = cleaned_data.get('number_of_guests')
         table = cleaned_data.get('table')
 
+        # Debugging print statements
         print("Form data in clean() method:")
         print(f"date: {date}")
         print(f"time: {time}")
@@ -37,7 +38,8 @@ class BookingForm(forms.ModelForm):
         # 2. Check for overlapping bookings for the selected table
         existing_bookings = Booking.objects.filter(
             table=table, date=date, time=time
-        )
+        ).exclude(id=self.instance.id)  # Exclude current booking when editing
+
         if existing_bookings.exists():
             print("Overlapping booking check failed")
             raise ValidationError(
@@ -55,7 +57,8 @@ class BookingForm(forms.ModelForm):
             date=date,
             time__lt=booking_end_time,
             time__gte=time,
-        )
+        ).exclude(id=self.instance.id)
+
         if overlapping_bookings.exists():
             print("Minimum booking duration check failed")
             raise ValidationError(
@@ -72,7 +75,7 @@ class BookingForm(forms.ModelForm):
             date=date,
             time__lte=time,
             time__gte=(datetime.combine(date, time) - BUFFER_TIME).time(),
-        )
+        ).exclude(id=self.instance.id)
 
         booking_end_datetime = datetime.combine(date, booking_end_time)
         bookings_starting_after = Booking.objects.filter(
@@ -80,7 +83,7 @@ class BookingForm(forms.ModelForm):
             date=date,
             time__lt=booking_end_time,
             time__gte=(booking_end_datetime - BUFFER_TIME).time(),
-        )
+        ).exclude(id=self.instance.id)
 
         if bookings_ending_before.exists() or bookings_starting_after.exists():
             print("Buffer time check failed")
