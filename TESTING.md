@@ -1,4 +1,4 @@
-## Functional Testing
+# Functional Testing
 
 | Description      | Steps                                                                                                                                           | Expected                                                                       | Actual                                                                         | Pass |
 | ---------------- | ----------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------ | ------------------------------------------------------------------------------ | ---- |
@@ -11,25 +11,15 @@
 | Make account     | Press login, click on sign up link, type in your preferred username and password. Email is optional                                             | See message on home page Successfully signed in as username                    | See message on home page Successfully signed in as username                    | Pass |
 | logout           | Press logout in navbar then sign out                                                                                                            | See message you have signed out                                                | See message you have signed out                                                | Pass |
 
-**Navigation Links**
+## Navigation links
 
 Testing was performed to ensure all navigation links on the respective pages, navigated to the correct pages as per design. This was done by clicking on the navigation links on each page.
 
-- Home -> index.html
-- Bookings Drop Down, Manage Bookings -> managebookings.html
-- Bookings Drop Down, New Booking -> create_booking.html
-- Menus Drop Down, View Menu -> menus.html
-- Menus Drop Down, Create Menu -> create_menu.html
-- Menus Drop Down, Manage Menus => manage_menus.html
-- Logout -> Sign out all auth page
-- Login -> Sign in all auth page
-- Register -> Sign up all auth page
+- See markdown testing above for navigation links and how they work
 
 All navigation links directed to the corect pages as expected.
 
-<hr>
-
-**Footer**
+## Footer
 
 Testing was performed on the footer links by clicking the font awesome icons and ensuring that the facebook icon opened facebook in a new tab and the twitter icon opened twitter and the linkedin icon opened linkedin in a new tab. These behaved as expected.
 
@@ -37,10 +27,10 @@ Testing was performed on the footer links by clicking the font awesome icons and
 
 Tests were performed on the create booking to ensure that:
 
-1. A customer cannot book a date in the past
+1. A customer cannot book a date in the past. need to check
 2. A customer cannot book if no tables are available for the amount of guests
 3. A customer cannot edit a booking with an increased guest size if no tables have capacity
-4. Forms cannot be submitted when required fields are empty
+4. Forms cannot be submitted when required fields are empty.
 
 ## Unit Testing
 
@@ -48,7 +38,7 @@ Unit tests were created to test some basic functionality such as templates used 
 
 Results:
 
-![unit tests]()
+![unit tests](docs/readme_images/unit_test.png)
 
 ## Accessibility
 
@@ -67,11 +57,39 @@ Testing was focused to ensure the following criteria were met:
 
 ## Validator Testing
 
-All pages were run through the [w3 HTML Validator](https://validator.w3.org/). Initially there were some errors due to stray script tags, misuse of headings within spans and some unclosed elements. All of these issues were corrected and all pages passed validation.
+All pages were run through the [w3 HTML Validator](https://validator.w3.org/). Initially there were some errors due to stray script tags, misuse of headings within spans and some unclosed elements. All of these issues were corrected and all pages passed validation. There is an Error on line 55 in base.html that i cant seem to fix, but it works.
 
 Due to the django templating language code used in the HTML files, these could not be copy and pasted into the validator and due to the secured views, pages with login required or a secured view cannot be validated by direct URI. To test the validation on the files, open the page to validate, right click and view page source. Paste the raw html code into the validator as this will be only the HTML rendered code.
 
-![HTML Validator]()
+![HTML Validator](/docs/readme_images/homepage_validation.png)
+
+![HTML Validator](/docs/readme_images/home_logged_in.png)
+
+![HTML Validator](/docs/readme_images/menu_validation.png)
+
+![HTML Validator](/docs/readme_images/menu_logged_in.png)
+
+![HTML Validator](/docs/readme_images/book_a_table_validation.png)
+
+![HTML Validator](/docs/readme_images/book_a_table_success_validation.png)
+
+![HTML Validator](/docs/readme_images/edit_booking_validation.png)
+
+![HTML Validator](/docs/readme_images/edit_booking_success_validation.png)
+
+![HTML Validator](/docs/readme_images/delete_booking_validation.png)
+
+![HTML Validator](/docs/readme_images/delete_booking_success_validation.png)
+
+![HTML Validator](/docs/readme_images/my_booking_validation.png)
+
+![HTML Validator](/docs/readme_images/)
+
+## Styling
+
+CSS was run through the offical [jigsaw_validator] to ensure that the styling is correct and working all throughout the site.
+
+![jigsaw](docs/readme_images/css_validation.png)
 
 All pages were run through the Code institute's [Pep8](https://pep8ci.herokuapp.com/#) validator to ensure all code was pep8 compliant. Some errors were shown due to blank spacing and lines too long, 1 line instead of 2 expected. All of these errors were resolved and code passed through validators with the exception of the settings.py file.
 
