@@ -38,7 +38,7 @@ class BookingForm(forms.ModelForm):
         5. Enforce a 30-minute buffer between consecutive bookings.
 
         Raises:
-            ValidationError: If any of the checks fail, Thow ValidationError.
+            ValidationError: If any of the checks fail, Throw ValidationError.
         Returns:
             dict: The cleaned data after passing all validation checks.
         """
@@ -47,13 +47,6 @@ class BookingForm(forms.ModelForm):
         time = cleaned_data.get('time')
         guests = cleaned_data.get('number_of_guests')
         table = cleaned_data.get('table')
-
-        # Debugging print statements
-        print("Form data in clean() method:")
-        print(f"date: {date}")
-        print(f"time: {time}")
-        print(f"guests: {guests}")
-        print(f"table: {table}")
 
         # Get the current date and time
         now = datetime.now()
@@ -64,12 +57,10 @@ class BookingForm(forms.ModelForm):
 
             # 0. Check if the booking is in the past
             if booking_datetime < now:
-                print("Past booking check failed")
                 raise ValidationError("Bookings in the past are not allowed.")
 
         # 1. Check if the selected table has enough capacity
         if table and table.size < guests:
-            print("Capacity check failed")
             raise ValidationError(
                 f"The selected table can only accommodate {table.size} guests"
             )
@@ -80,7 +71,6 @@ class BookingForm(forms.ModelForm):
         ).exclude(id=self.instance.id)  # Exclude current booking when editing
 
         if existing_bookings.exists():
-            print("Overlapping booking check failed")
             raise ValidationError(
                 "The selected table is already booked for this date and time."
             )
@@ -99,7 +89,6 @@ class BookingForm(forms.ModelForm):
         ).exclude(id=self.instance.id)
 
         if overlapping_bookings.exists():
-            print("Minimum booking duration check failed")
             raise ValidationError(
                 "The booking duration must be at least 1 hour."
             )
@@ -125,10 +114,8 @@ class BookingForm(forms.ModelForm):
         ).exclude(id=self.instance.id)
 
         if bookings_ending_before.exists() or bookings_starting_after.exists():
-            print("Buffer time check failed")
             raise ValidationError(
                 "There must be 30min gap between bookings for the same table."
             )
 
-        print("All validation checks passed")
         return cleaned_data
