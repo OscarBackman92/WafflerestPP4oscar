@@ -29,7 +29,7 @@ Tests were performed on the create booking to ensure that:
 
 1. A customer cannot book a date in the past. need to check
 2. A customer cannot book if no tables are available for the amount of guests
-3. A customer cannot edit a booking with an increased guest size if no tables have capacity
+3. A customer cannot edit a booking with an increased guest size if there are no tables for with that size or more.
 4. Forms cannot be submitted when required fields are empty.
 
 ## Unit Testing

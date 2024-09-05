@@ -45,7 +45,7 @@ This is a fictional waffle restaurant based in sweden and serving the best waffl
 
 ### Site Goals
 
-- [Clearly list the primary goals your project aims to achieve. What problems does it solve? What value does it provide to users?]
+- The sites goal is to satisfy a need for waffels in an easy way to view menu and to book a table.
 
 ### User Stories
 
@@ -57,7 +57,10 @@ This is a fictional waffle restaurant based in sweden and serving the best waffl
 
 ## The Scope Plane
 
-- [List the core features and functionalities included in your project.]
+- A homepage that welcomes the customer and throws information about the restaurant on them
+- A menu for customers to view even if they are logged out.
+- An easy to use booking form.
+- An easy way to manage your bookings, edit and delete.
 
 ## The Structure Plane
 
@@ -67,7 +70,7 @@ This is a fictional waffle restaurant based in sweden and serving the best waffl
 
 ### Features Left to Implement (Optional)
 
-- [If applicable, list features you'd like to add in the future]
+- Newsletter subscription, add a map to location, contact page for queries. User management, reports for booking/deleted bookings
 
 ## The Skeleton Plane
 
@@ -91,19 +94,67 @@ This is a fictional waffle restaurant based in sweden and serving the best waffl
 
 - ![ERD](docs/readme_images/waffle_model_ERD.png)
 
-### Security
+## Security
 
-- [Explain the security measures you've implemented to protect user data and prevent unauthorized access.]
+### 1. **Authentication (`@login_required`)**
+
+- **Description**: The `@login_required` decorator is used to ensure only authenticated users can access certain views (e.g., making, editing, and deleting bookings).
+- **Purpose**: Protects sensitive user actions and data from unauthorized users by redirecting them to the login page if they are not authenticated.
+
+### 2. **Permission Checks**
+
+- **Description**: Checks are implemented to verify that users can only interact with bookings they own, such as:
+
+  ```python
+
+     if booking.user != request.user:
+         raise PermissionDenied()
+     ```
+
+- **Purpose**: Prevents users from accessing or modifying other users' bookings, safeguarding personal and booking information.
+
+### 3. **Form Validation (`form.is_valid()`)**
+
+- **Description**: Form data is validated to ensure that input is correct and follows expected formats.
+- **Purpose**: Prevents malicious or invalid data from being submitted, mitigating risks like form tampering or injection attacks.
+
+### 4. **Error Handling (`try...except`)**
+
+- **Description**: Error handling mechanisms using `try...except` blocks ensure that any unexpected issues (e.g., database failures) are caught and handled gracefully.
+- **Purpose**: Prevents system crashes and provides user-friendly error messages when something goes wrong, protecting system stability.
+
+### 5. **Email Confirmation**
+
+- **Description**: After a booking action is performed (creation, update, deletion), a confirmation email is sent to the user.
+- **Purpose**: Provides an additional layer of verification, allowing users to monitor their bookings and take action if something suspicious occurs.
+
+### 6. **Database Access Protection (`get_object_or_404`)**
+
+- **Description**: The use of `get_object_or_404()` ensures that the requested booking or other database object exists before proceeding with the action.
+- **Purpose**: Prevents users from accessing non-existent or deleted objects, protecting the application from errors and unauthorized access.
+
+### 7. **Input Filtering for Availability (`Table.objects.filter()`)**
+
+- **Description**: Queries are used to filter tables by capacity and availability, ensuring that only valid tables are assigned to a booking.
+- **Purpose**: Prevents overbooking or the assignment of tables that are already reserved.
+
+### 8. **Redirection After Actions**
+
+- **Description**: After performing actions like booking creation or deletion, the user is redirected to the appropriate page (e.g., `my_bookings`).
+- **Purpose**: Protects against form resubmission attacks, preventing duplicate bookings or accidental repetitions of actions.
 
 ## The Surface Plane
 
 ### Design
 
-- [Provide a brief overview of your design approach and philosophy.]
+- **Overview**: The design of this webpage prioritizes a clean and inviting aesthetic to enhance user experience. High-quality food imagery is used to create visual appeal and highlight the restaurant's focus on delicious cuisine. A clear layout with distinct sections ensures easy navigation and access to information. Prominently displayed call-to-action buttons encourage users to explore the menu and book a table.
 
 ### Color Scheme
 
-- [List the primary colors used and their hex codes.]
+- **Primary Colors**:
+  - **Off-white**: `#f5f5f5` - Used for the background, providing a neutral backdrop that lets the content and images stand out.
+  - **Dark Green**: `#336633` - Used for text and accents, conveying a sense of freshness and sophistication associated with quality food.
+  - **Orange**: `#ffa500` - Used for call-to-action buttons, drawing attention and creating a sense of urgency.
 
 ### Typography
 
@@ -126,7 +177,7 @@ This is a fictional waffle restaurant based in sweden and serving the best waffl
 - balsamiq
   - wireframes were created using balsamiq from https://balsamiq.com/wireframes/desktop/#
 
-**Python Modules Used**
+## Python Modules Used
 
 - Django Class based views (ListView, UpdateView, DeleteView, CreateView) - Used for the classes to create, read, update and delete
 - Mixins (LoginRequiredMixin, UserPassesTestMixin) - Used to enforce login required on views and test user is authorized to perform actions
@@ -167,7 +218,7 @@ Test cases and results can be found in the [TESTING.md](TESTING.md) file. This w
 
 ### Version Control
 
-The site was created using the Visual Studio Code editor and pushed to github to the remote repository 
+The site was created using the Visual Studio Code editor and pushed to github to the remote repository.
 
 The following git commands were used throughout development to push code to the remote repo:
 
@@ -226,9 +277,9 @@ Most commonly, forks are used to either propose changes to someone else's projec
 
 ## Credits
 
-- Daisy McGirr for being my mentor
-- Gareth McGirr SizzleAndSteak project inspiration and readme inspiration
-- Jonathan Zakrisson for debugging and tips
-- Google why not?
-- Josefine Bäckman my wife
-- Family for testing and input
+- Daisy McGirr for being my mentor.
+- Gareth McGirr SizzleAndSteak project inspiration and readme inspiration.
+- Jonathan Zakrisson for debugging and tips.
+- Google why not?.
+- Josefine Bäckman my wife.
+- Family for testing and input.
