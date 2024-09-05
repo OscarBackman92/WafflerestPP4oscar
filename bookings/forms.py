@@ -6,6 +6,18 @@ from datetime import datetime, timedelta
 
 
 class BookingForm(forms.ModelForm):
+    """
+    A form for creating and validating Booking objects.
+
+    This form handles:
+    - Selection of a table, date, time, and number of guests.
+    - Validation of table capacity.
+    - Prevention of overlapping bookings.
+    - Minimum booking duration enforcement.
+    - Buffer time enforcement between bookings.
+    - Prevention of bookings in the past.
+    """
+
     class Meta:
         model = Booking
         fields = ['table', 'date', 'time', 'number_of_guests']
@@ -15,6 +27,21 @@ class BookingForm(forms.ModelForm):
         }
 
     def clean(self):
+        """
+        Perform validation on the cleaned data from the form.
+
+        The following checks are performed:
+        1. Prevent bookings in the past.
+        2. Ensure the selected table can accommodate the number of guests.
+        3. Check for overlapping bookings on the selected table, date, and time
+        4. Ensure that bookings last for at least the minimum (1 hour).
+        5. Enforce a 30-minute buffer between consecutive bookings.
+
+        Raises:
+            ValidationError: If any of the checks fail, Thow ValidationError.
+        Returns:
+            dict: The cleaned data after passing all validation checks.
+        """
         cleaned_data = super().clean()
         date = cleaned_data.get('date')
         time = cleaned_data.get('time')
@@ -27,6 +54,18 @@ class BookingForm(forms.ModelForm):
         print(f"time: {time}")
         print(f"guests: {guests}")
         print(f"table: {table}")
+
+        # Get the current date and time
+        now = datetime.now()
+
+        # Combine the selected date and time for comparison
+        if date and time:
+            booking_datetime = datetime.combine(date, time)
+
+            # 0. Check if the booking is in the past
+            if booking_datetime < now:
+                print("Past booking check failed")
+                raise ValidationError("Bookings in the past are not allowed.")
 
         # 1. Check if the selected table has enough capacity
         if table and table.size < guests:
