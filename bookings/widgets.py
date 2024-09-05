@@ -15,6 +15,7 @@ class TimeSelectWidget(forms.Select):
         end_time = datetime.strptime('23:00', '%H:%M')
         while current_time <= end_time:
             intervals.append((
-                current_time.strftime('%H:%M'), current_time.strftime('%H:%M')))
+                current_time.strftime('%H:%M'),
+                current_time.strftime('%H:%M')))
             current_time += timedelta(minutes=30)
         return intervals

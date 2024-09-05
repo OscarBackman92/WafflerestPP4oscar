@@ -3,6 +3,7 @@ from django.template.loader import render_to_string
 from django.utils.html import strip_tags
 from django.conf import settings
 
+
 def send_confirmation_mail(subject, recipient_list, context, template_name):
     """
     Send an email with the given subject, recipient list, and context.

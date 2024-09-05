@@ -13,11 +13,13 @@ class MenuItem(models.Model):
     def __str__(self):
         return self.name
 
+
 class Table(models.Model):
     size = models.IntegerField()
 
     def __str__(self):
         return f"Table for {self.size} people"
+
 
 class Booking(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
@@ -27,10 +29,8 @@ class Booking(models.Model):
     time = models.TimeField()
     number_of_guests = models.PositiveIntegerField(default=1)
 
-
     class Meta:
         unique_together = ('table', 'date', 'time')
 
     def __str__(self):
         return f"Booking for {self.table} on {self.date} at {self.time}"
-
