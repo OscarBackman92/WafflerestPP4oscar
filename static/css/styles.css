@@ -100,8 +100,21 @@ footer {
     width: 100%;
     font-family: 'Poppins', sans-serif;
     text-align: center;
-    min-height: auto;
 }
+
+.social-button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 150px; /* Adjust width as needed */
+  text-align: center;
+}
+
+.social-button i {
+  margin-right: 5px; /* Space between icon and text */
+  font-size: 18px; /* Adjust icon size if needed */
+}
+
 
 /* Additional utility styles */
 .text-center {
