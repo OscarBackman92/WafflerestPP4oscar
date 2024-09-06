@@ -14,49 +14,22 @@
             <div class="card"> 
                 <div class="card-body">
 
-                    {% element h1 %}
-                        <h1 class="text-center">{% trans "Sign Up" %}</h1>
-                    {% endelement %}
+                    <h1 class="text-center">{% trans "Sign Up" %}</h1>
 
-                    {% setvar link %}
-                        <a href="{{ login_url }}">
-                    {% endsetvar %}
-                    {% setvar end_link %}
-                        </a>
-                    {% endsetvar %}
-
-                    {% element p %}
-                        <p class="text-center">
-                            {% blocktranslate %}Already have an account? Then please {{ link }}sign in{{ end_link }}.{% endblocktranslate %}
-                        </p>
-                    {% endelement %}
+                    <p class="text-center">
+                        {% blocktranslate %}Already have an account? Then please <a href="{{ login_url }}">sign in</a>.{% endblocktranslate %}
+                    </p>
 
                     {% if not SOCIALACCOUNT_ONLY %}
                         {% url 'account_signup' as action_url %}
-                        {% element form form=form method="post" action=action_url tags="entrance,signup" %}
-                            {% slot body %}
-                                {% csrf_token %}
-                                <div class="mb-3"> 
-                                    {% element fields form=form unlabeled=True %}
-                                        {% for field in form %}
-                                            <div class="form-floating">
-                                                {{ field }}
-                                                <label for="{{ field.id_for_label }}">{{ field.label }}</label>
-                                            </div>
-                                        {% endfor %}
-                                    {% endelement %}
-                                </div>
-                                {{ redirect_field }}
-                            {% endslot %}
-
-                            {% slot actions %}
-                                <div class="d-grid gap-2">
-                                    {% element button tags="prominent,signup" type="submit" %}
-                                        <button type="submit" class="btn btn-primary">{% trans "Sign Up" %}</button>
-                                    {% endelement %}
-                                </div>
-                            {% endslot %}
-                        {% endelement %}
+                        <form method="post" action="{{ action_url }}">
+                            {% csrf_token %}
+                            {{ form|crispy }}
+                            {{ redirect_field }}
+                            <div class="d-grid gap-2">
+                                <button type="submit" class="btn btn-primary">{% trans "Sign Up" %}</button>
+                            </div>
+                        </form>
                     {% endif %}
 
                     {% if SOCIALACCOUNT_ENABLED %}
