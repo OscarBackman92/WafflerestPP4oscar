@@ -207,6 +207,9 @@ table {
     text-transform: uppercase;
   }
 
+.social {
+  margin-right: 5px;
+}
 
 
   
@@ -259,4 +262,6 @@ table {
       border-bottom: 0;
     }
   }
+  
+
   
