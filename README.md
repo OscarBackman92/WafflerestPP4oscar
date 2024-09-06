@@ -163,11 +163,15 @@ Utilizes Bootstrap's grid system to ensure seamless adaptation across various de
 - User Feedback: Provides clear messages and guidance when no bookings are present.
 - Accessibility: Enhances screen reader usability with data-label attributes.
 
+![my_bookings.html](docs/readme_images/my_bookings.png)
+
 #### menu.html
 
 - Menu Item Display: Showcases restaurant menu items attractively using Bootstrap cards.
 - "Book a Table" Call-to-Action: Prominently encourages users to make reservations post menu browsing.
 - Card Layout: Organizes menu items in visually appealing Bootstrap cards.
+
+![Menu](docs/readme_images/menu.png)
 
 #### make_booking.html
 
@@ -175,20 +179,28 @@ Utilizes Bootstrap's grid system to ensure seamless adaptation across various de
 - Crispy Forms Integration (Optional): Enhances form appearance and layout.
 - Form Submission: Clear "Submit Booking" button initiates the booking process.
 
+![booking](docs/readme_images/book_a_table.png)
+
 #### edit_booking.html
 
 - Booking Editing: Allows convenient modification of existing bookings.
 - "Save Changes" and "Go Back" Buttons: Intuitive options for confirming or canceling edits.
+
+![edit](docs/readme_images/edit.png)
 
 #### delete_booking.html
 
 - Booking Deletion Confirmation: Prevents accidental deletions with a confirmation prompt.
 - "Delete" and "Go Back" Buttons: Clear options for proceeding or canceling deletion.
 
+![delete](docs/readme_images/delete.png)
+
 #### booking_detail.html
 
 - Booking Details Display: Provides a comprehensive overview of specific booking details.
 - "Edit Booking" and "Cancel Booking" Buttons: Facilitates easy modification or cancellation of bookings.
+
+![booking_details](docs/readme_images/view.png)
 
 #### home.html
 
@@ -199,6 +211,8 @@ Utilizes Bootstrap's grid system to ensure seamless adaptation across various de
 - About Us Section: Highlights restaurant mission, values, and dining experience.
 - How It Works Section: Explains the booking process for new users.
 - Card Layout: Organizes content effectively with Bootstrap cards.
+
+![home](docs/readme_images/home.png)
 
 ### Overall Observations
 
@@ -342,11 +356,16 @@ Utilizes Bootstrap's grid system to ensure seamless adaptation across various de
 
 ## Technologies
 
-- **Python**: The primary programming language used for the Django backend.
-- **Django**: The high-level web framework that powers the application's structure and logic.
-- **HTML**: The markup language used to structure the web pages.
-- **CSS**: The styling language for defining the visual appearance of the web pages.
-- **Bootstrap**: The CSS framework offering pre-designed components and a responsive grid system for layout.
+- **Python**
+  - The primary programming language used for the Django backend.
+- **Django**
+  - The high-level web framework that powers the application's structure and logic.
+- **HTML**
+  - The markup language used to structure the web pages.
+- **CSS**
+  - The styling language for defining the visual appearance of the web pages.
+- **Bootstrap**
+  - The CSS framework offering pre-designed components and a responsive grid system for layout.
 - **Visual Studio Code**
   - The website was developed using Visual Studio Code IDE
 - **GitHub**
