@@ -245,6 +245,10 @@ Utilizes Bootstrap's grid system to ensure seamless adaptation across various de
 
 ![FlowChart](docs/readme_images/flowchart_menu_and_my_bookings.png)
 
+### Database Design
+
+Entity relationship diagram was created using [DBVisualizer](https://www.dbvis.com/) and shows the schemas for each of the models and how they are related.
+
 ![ERD](docs/readme_images/schema.jpg)
 
 ## Security
