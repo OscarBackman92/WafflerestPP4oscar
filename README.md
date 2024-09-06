@@ -4,7 +4,7 @@
 
 This is a fictional waffle restaurant based in sweden and serving the best waffles in town.
 
-[Live Site Link](https://oscarwaffle-be7490c12beb.herokuapp.com/) 
+[Live Site Link](https://oscarwaffle-be7490c12beb.herokuapp.com/)
 
 ![Mock up](docs/readme_images/mock_up.png)
 
@@ -49,11 +49,85 @@ This is a fictional waffle restaurant based in sweden and serving the best waffl
 
 ### User Stories
 
-- [List out the key user stories that drove the development of your project. Focus on the "who", "what", and "why" of each story.]
+#### User Story 1: View Menu
+
+- **As a** customer,
+- **I want to** view the restaurant menu,
+- **So that I can** see the dishes available for booking.
+
+#### User Story 2: Book a Table
+
+- **As a** customer,
+- **I want to** book a table for a specific date and time,
+- **So that I can** secure a spot at the restaurant.
+
+#### User Story 3: Manage Menu
+
+- **As an** admin,
+- **I want to** add, edit, or remove menu items,
+- **So that I can** keep the menu up to date.
+
+#### User Story 4: Manage Tables
+
+- **As an** admin,
+- **I want to** add, edit, or remove tables,
+- **So that I can** ensure the system accurately reflects available seating.
+
+#### User Story 5: View Bookings
+
+- **As an** admin,
+- **I want to** view all customer bookings,
+- **So that I can** manage reservations and ensure table availability.
+
+#### User Story 6: Cancel a Booking
+
+- **As a** customer,
+- **I want to** cancel my existing booking,
+- **So that I can** free up the table if my plans change.
+
+#### User Story 7: View Booking Details
+
+- **As an** admin,
+- **I want to** view detailed information for each booking,
+- **So that I can** manage reservations more effectively.
+
+#### User Story 8: Manage User Accounts
+
+- **As an** admin,
+- **I want to** manage user accounts,
+- **So that I can** handle user-related issues and maintain the system.
 
 ### Agile Planning (Optional)
 
-- [If you used Agile methodologies, briefly describe your process, sprints, epics, etc.]
+### Booking System
+
+This encompasses:
+-**User Story 2**: Book a Table
+
+- **User Story 6**: Cancel a Booking
+
+These stories involve:
+-Complex interactions with the database
+
+- Table availability checks
+- Potentially payment processing (not explicitly mentioned)
+
+### Admin Management
+
+This could include:
+-**User Story 3**: Manage Menu
+-**User Story 4**: Manage Tables
+-**User Story 5**: View Bookings
+-**User Story 7**: View Booking Details
+-**User Story 8**: Manage User Accounts
+
+These stories involve:
+-Backend functionality for administrators to control various aspects of the restaurant's operations and user data
+
+### Why These are Epics
+
+- **Complexity**: They involve multiple interconnected features and functionalities, likely requiring more development effort than a single user story.
+- **Scope**: They represent broader user goals rather than specific, isolated actions.
 
 ## The Scope Plane
 
