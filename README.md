@@ -229,23 +229,23 @@ Utilizes Bootstrap's grid system to ensure seamless adaptation across various de
 
 ### Wireframes
 
-- ![Homepage](docs/readme_images/wireframe_home.png)
+![Homepage](docs/readme_images/wireframe_home.png)
 
-- ![Menu](docs/readme_images/wireframe_menu.png)
+![Menu](docs/readme_images/wireframe_menu.png)
 
-- ![Book_a_table](docs/readme_images/wireframe_booking.png)
+![Book_a_table](docs/readme_images/wireframe_booking.png)
 
-- ![my_bookings](docs/readme_images/wireframe_my_bookings.png)
+![my_bookings](docs/readme_images/wireframe_my_bookings.png)
 
-### Database Design
+### Flowchart
 
-- ![Flowcharts](docs/readme_images/flowchart_booking_detail.png)
+![Flowcharts](docs/readme_images/flowchart_booking_detail.png)
 
-- ![Flowchart](docs/readme_images/flowchart_make_booking_and_delete_booking.png)
+![Flowchart](docs/readme_images/flowchart_make_booking_and_delete_booking.png)
 
-- ![FlowChart](docs/readme_images/flowchart_menu_and_my_bookings.png)
+![FlowChart](docs/readme_images/flowchart_menu_and_my_bookings.png)
 
-- ![ERD](docs/readme_images/waffle_model_ERD.png)
+![ERD](docs/readme_images/schema.jpg)
 
 ## Security
 
@@ -452,3 +452,4 @@ Most commonly, forks are used to either propose changes to someone else's projec
 - Google why not?.
 - Josefine Bäckman my wife.
 - Family for testing and input.
+- Dbvisualzier for erd diagram.
