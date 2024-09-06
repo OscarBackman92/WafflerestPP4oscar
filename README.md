@@ -49,6 +49,8 @@ This is a fictional waffle restaurant based in sweden and serving the best waffl
 
 ### User Stories
 
+![kanban](docs/readme_images/kanban.png)
+
 #### User Story 1: View Menu
 
 - **As a** customer,
