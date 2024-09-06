@@ -403,6 +403,10 @@ The following git commands were used throughout development to push code to the 
 
 ### Deployment Instructions
 
+### Database Creation
+
+I created the database from Code institutes link https://dbs.ci-dbs.net/ in "I think therefore i blog" segment in the LMS
+
 ### Heroku Deployment
 
 The site was deployed to Heroku. The steps to deploy are as follows:
@@ -417,7 +421,7 @@ The site was deployed to Heroku. The steps to deploy are as follows:
 - Go to the settings tab and then click reveal config vars
 - Add the following config vars:
   - SECRET_KEY: (Your secret key)
-  - DATABASE_URL: (This should already exist with add on of postgres)
+  - DATABASE_URL: (Look at database creation)
   - EMAIL_HOST_USER: (email address)
   - EMAIL_HOST_PASS: (email app password)
 - Click the deploy tab

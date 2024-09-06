@@ -27,10 +27,10 @@ Testing was performed on the footer links by clicking the font awesome icons and
 
 Tests were performed on the create booking to ensure that:
 
-1. A customer cannot book a date in the past. need to check
-2. A customer cannot book if no tables are available for the amount of guests
-3. A customer cannot edit a booking with an increased guest size if there are no tables for with that size or more.
-4. Forms cannot be submitted when required fields are empty.
+1. A customer cannot book a date in the past. need to check -> Error message "Bookings in the past are not allowed".
+2. A customer cannot book if no tables are available for the amount of guests, Error message for The selected tabel can only accommodate Table size guests.
+3. A customer cannot edit a booking with an increased guest size if there are no tables for with that size or more. for The selected tabel can only accommodate Table size guests.
+4. Forms cannot be submitted when required fields are empty. Error messages requiring for more input
 
 ## Unit Testing
 
