@@ -347,17 +347,17 @@ Utilizes Bootstrap's grid system to ensure seamless adaptation across various de
 - **HTML**: The markup language used to structure the web pages.
 - **CSS**: The styling language for defining the visual appearance of the web pages.
 - **Bootstrap**: The CSS framework offering pre-designed components and a responsive grid system for layout.
-- Visual Studio Code
+- **Visual Studio Code**
   - The website was developed using Visual Studio Code IDE
-- GitHub
+- **GitHub**
   - Source code is hosted on GitHub
-- Git
+- **Git**
   - Used to commit and push code during the development of the Website
-- Font Awesome
+- **Font Awesome**
   - This was used for various icons throughout the site
-- Favicon.io
+- **Favicon.io**
   - favicon files were created at https://favicon.io/favicon-converter/
-- balsamiq
+- **balsamiq**
   - wireframes were created using balsamiq from https://balsamiq.com/wireframes/desktop/#
 
 ## Testing
