@@ -142,7 +142,70 @@ These stories involve:
 
 ### Features
 
-- [For each major feature, provide a detailed explanation of its implementation, including relevant code snippets or screenshots. You can follow the "User Story - Implementation" format from the example.]
+## Restaurant Booking System
+
+The Django application facilitates restaurant reservation management, allowing users to view menus, make and manage bookings, and review booking details.
+
+### User-Friendly Interface
+
+The templates prioritize clarity and ease of use, presenting information in an organized manner for an enhanced user experience.
+
+### Responsive Design
+
+Utilizes Bootstrap's grid system to ensure seamless adaptation across various devices, maintaining consistency in layout and usability.
+
+### Template-Specific Features
+
+#### my_bookings.html
+
+- Displays User Bookings: Lists all bookings with essential details in a tabular format.
+- Booking Actions: Enables users to "View", "Edit", and "Delete" bookings directly.
+- User Feedback: Provides clear messages and guidance when no bookings are present.
+- Accessibility: Enhances screen reader usability with data-label attributes.
+
+#### menu.html
+
+- Menu Item Display: Showcases restaurant menu items attractively using Bootstrap cards.
+- "Book a Table" Call-to-Action: Prominently encourages users to make reservations post menu browsing.
+- Card Layout: Organizes menu items in visually appealing Bootstrap cards.
+
+#### make_booking.html
+
+- Booking Form: User-friendly form for inputting booking details.
+- Crispy Forms Integration (Optional): Enhances form appearance and layout.
+- Form Submission: Clear "Submit Booking" button initiates the booking process.
+
+#### edit_booking.html
+
+- Booking Editing: Allows convenient modification of existing bookings.
+- "Save Changes" and "Go Back" Buttons: Intuitive options for confirming or canceling edits.
+
+#### delete_booking.html
+
+- Booking Deletion Confirmation: Prevents accidental deletions with a confirmation prompt.
+- "Delete" and "Go Back" Buttons: Clear options for proceeding or canceling deletion.
+
+#### booking_detail.html
+
+- Booking Details Display: Provides a comprehensive overview of specific booking details.
+- "Edit Booking" and "Cancel Booking" Buttons: Facilitates easy modification or cancellation of bookings.
+
+#### home.html
+
+- Homepage/Landing Page: Welcoming entrance showcasing essential information and calls to action.
+- Hero Image: Captivating banner representing the restaurant's ambiance.
+- Welcome Message: Warmly greets users and describes the application's purpose.
+- Call-to-Action Sections: Prominent buttons for "View Menu" and "Book Now".
+- About Us Section: Highlights restaurant mission, values, and dining experience.
+- How It Works Section: Explains the booking process for new users.
+- Card Layout: Organizes content effectively with Bootstrap cards.
+
+### Overall Observations
+
+- Clear Navigation: Intuitive structure for quick access to key features.
+- Engaging Content: Hero image and welcoming message create a positive user impression.
+- Informative Sections: "About Us" and "How It Works" enrich user understanding.
+- Visual Appeal: Modern design elements enhance overall aesthetic and usability.
 
 ### Features Left to Implement (Optional)
 
@@ -277,14 +340,25 @@ These stories involve:
 - tzdata==2024.1 - Time zone database used with Django
 - whitenoise==6.7.0 - Serves static files without a cloud provider (e.g., Cloudinary)
 
-### Imagery
-
-- [Describe any images or graphics used and their sources (if applicable).]
-
 ## Technologies
 
-- [List all the technologies, languages, frameworks, and libraries used in your project.]
-- [You can include Python modules and external libraries as in the example.]
+- **Python**: The primary programming language used for the Django backend.
+- **Django**: The high-level web framework that powers the application's structure and logic.
+- **HTML**: The markup language used to structure the web pages.
+- **CSS**: The styling language for defining the visual appearance of the web pages.
+- **Bootstrap**: The CSS framework offering pre-designed components and a responsive grid system for layout.
+- Visual Studio Code
+  - The website was developed using Visual Studio Code IDE
+- GitHub
+  - Source code is hosted on GitHub
+- Git
+  - Used to commit and push code during the development of the Website
+- Font Awesome
+  - This was used for various icons throughout the site
+- Favicon.io
+  - favicon files were created at https://favicon.io/favicon-converter/
+- balsamiq
+  - wireframes were created using balsamiq from https://balsamiq.com/wireframes/desktop/#
 
 ## Testing
 
